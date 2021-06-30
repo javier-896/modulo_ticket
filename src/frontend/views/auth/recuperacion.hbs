@@ -1,0 +1,58 @@
+{{> header-auth}}
+<!-- Container -->
+    <div class="container" id="container">
+        <!-- Row -->
+        <div class="row">
+            <!-- Sign Up -->
+            <div class="col align-center flex-col sign-up">
+            </div>
+            <!-- End Sign Up -->
+
+            <!-- Recuperación -->
+            <div class="col align-center flex-col sign-in">
+                <div class="form-wrapper align-center">
+                    <div class="form sign-in">
+                        <div class="input-group">
+                            <i class="bx bx-mail-send"></i>
+                            <input type="email" placeholder="Correo" />
+                        </div>
+                        <h5>Pregunta 1</h5>
+                        <div class="input-group">
+                            <i class='bx bxs-book-content'></i>
+                            <input type="text" placeholder="Respuesta 1" />
+                        </div>
+                        <h5>Pregunta 2</h5>
+                        <div class="input-group">
+                            <i class='bx bxs-book-content'></i>
+                            <input type="text" placeholder="Respuesta 2" />
+                        </div>
+                        <button>Enviar</button>
+                        <p>
+                            <span> Deseas iniciar sesión? </span>
+                            <b id="sign-up"><a href="/auth/login">Iniciar sesión aquí</a></b>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Recuperación -->
+        </div>
+        <!-- End Row -->
+        <!-- Content Section -->
+        <div class="row content-row">
+            <!-- Recuperación Content -->
+            <div class="col align-items flex-col">
+                <div class="text sign-in">
+                    <h2>Olvidaste tu contraseña?</h2>
+                    <p>
+                        <b>Recuperala aquí</b>
+                    </p>
+                </div>
+                <div class="img sign-in">
+                    <img src="../img/security.svg" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container -->
+{{> footer-auth}}

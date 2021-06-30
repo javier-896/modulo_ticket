@@ -1,0 +1,113 @@
+<!-- CONTENIDO DEL FORMULARIO -->
+<div class="container-fluid">
+  <div class="container-fluid">
+<!-- Page Heading -->
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Nuevo ticket</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Nuevo ticket</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+</section>
+
+<!-- DataTales Example -->
+<section class="content">
+    <div class="col-md-12">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Agenda</h3>
+            </div>
+
+
+
+
+<div class="table-responsive mailbox-messages">
+  <table id="agendatable" class="table table-hover table-striped" >                        
+    <thead>           
+        <tr>
+          <td colspan="3">
+            <input id="buscar" type="text" class="form-control" placeholder="Buscar..."/>  
+          </td>
+        </tr>
+        <tr >
+          <th>Id</th>
+          <th>Nombre Completo</th>
+          <th>Código académico</th>
+          <th>Asignatura</th>
+          <th>Sección</th>
+          <th >Acción</th>                             
+        </tr>
+                   
+      </thead> 
+    <!-- Llamada de la agenda de contacto -->                    
+      <tbody id="Agendacontacto">
+  
+
+      </tbody>
+  </table>
+
+       </div>
+     </div>
+  </div>
+</div>                                 
+
+</section>   
+
+    <!-- MODAL PARA ENVIAR MENSAJE-->
+
+
+<div id="Modal1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">   
+          <div>  
+            <h4 class="modal-title " style="margin: 10px"> Nuevo ticket  </h4>     
+              <h6 style="margin: 10px" >Nombre : <label id="nombre"></label><h6>
+          </div>
+        </div>
+
+
+
+      <!--Cuerpo del modal-->
+<div class="modal-body"> 
+ 
+   <div class="Modalmensaje"   >
+     <form  id="Modalmensaje" action=""  enctype="multipart/form-data"   >
+
+        <div class="form-group"  style="margin: 20px">
+          <label for="descripcion">Contenido :</label>
+          <textarea class="form-control" id="descripcion" placeholder="Ingrese su mensaje" required></textarea> 
+       </div>
+      <div class="form-group"  style="margin: 20px">
+              <img id="img-view" src="../../img/placeholder.png" class="img-thumbnail"  width="304" height="236" >
+              <label for="recipient-name" class="col-form-label"></label>
+              <input type="file" id="almacenamiento" accept="image/*">
+              <br>
+              <progress id="progres-image" value="0" max="100" style="height: 35px;
+                                                                    width:100%;"></progress>
+      </div>   
+    <!--INPUTS COULTOS-->         
+     <input id="person2" name="person2" type="hidden" >
+     <input id="asig" name="asig" type="hidden" >     
+<!--Pie del modal-->
+         <div class="modal-footer">
+         <button type="submit" class="btn btn-info"> Enviar <i class="fas fa-paper-plane"></i></button>
+         <button type="reset" class="btn btn-danger" data-dismiss="modal"  > Cancelar <i class="fas fa-ban" >  </i>
+         </button>                        
+         </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+

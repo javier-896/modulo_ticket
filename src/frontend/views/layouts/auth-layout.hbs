@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{nombrePagina}}</title>
+    <!-- {{!-- GOOGLE FONTS --}} -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- {{!-- BOOTSTRAP 4 --}} -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- {{!-- FONT AWESOME 5 --}} -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- {{!-- STYLES --}} -->
+    {{#if pageAuthIndex}}
+        <link rel="stylesheet" href="./css/index.css">
+    {{/if}}
+    {{#if pageAuthLogin}}
+        <link rel="stylesheet" href="../css/styles.css" />
+    {{/if}}
+</head>
+
+<body>
+  
+{{{ body }}}
+
+</body>
+<!-- jQuery -->
+<script src="./plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./js/adminlte.min.js"></script>
+<script src="./js/login.js"></script>
+</body>
+</html>

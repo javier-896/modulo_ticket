@@ -1,0 +1,107 @@
+ <style>
+   .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+ </style>
+   <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Responder </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/mensajes">Tickets</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+            <!-- /.card -->
+          <!-- /.col -->
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div id="titleTicket" = class="card-header">
+              
+            </div>
+            <!-- /.card-header -->
+            <div class="container"> 
+                 <div class="card-body p-0">
+
+              <!-- /.mailbox-controls -->
+              <div class="mailbox-read-message" id="messages">
+
+
+              </div>
+              <!-- /.mailbox-read-message -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer bg-white">
+              <ul id="imagesTicket" class="mailbox-attachments d-flex align-items-stretch clearfix">
+                <li>
+                  <div id="img-preview">
+                  
+                  </div>
+                </li>
+              </ul>
+              <div id="fecha-ticket" style="text-align: right;">
+                
+              </div>
+                <div>
+                  <button id="deleteT" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</button>
+              </div>
+            </div>
+            
+              
+            </div>
+             </section>
+            <!-- FORMULARIO PARA RESPONDER EL MENSAJE -->
+
+            <section class="content">
+                <div class="card card-primary card-outline">
+                    <div class="card col-sm-10 aling-center ">
+                      <div class="card-header">
+                        <h3 class=" text-center">Responder</h3>
+                      </div>
+                      <div class="card-body">
+                           <form id="responderMensaje"  enctype="multipart/form-data" >
+                              <div class="form-group">
+                                 <label>Descripcion:</label>
+                                 <textarea id="descripcionMensaje" class="form-control" rows="3" placeholder="Escribe ..." required></textarea>
+                                 <div class="valid-feedback"></div>
+                              </div>
+                          
+                              <div class="container sm">
+                                 <img id="img-view" src="../../img/placeholder.png" class="img-thumbnail"  width="304" height="236" >
+                              </div>
+                        </div>
+                        <div class="card-footer col-sm-5">
+                              <div class="form-group">
+                                     <input type="file"  name="phototicket" id="file" accept="image/*">
+                                     <br>
+                                     <progress id="progres-image" value="0" max="100" style="height: 35px;
+                                                                                             width:100%;"></progress>
+                              </div> 
+                              <br>
+                              <div class="form-group" style="position: relative;">
+                                 <input id ="btnEnviar" type="submit" class="btn btn-primary" value="Enviar">
+                              </div>
+                          </form>
+                        </div>
+                    </div>
+
+                
+                </div>
+            </section>
+
+
+   
+
+
