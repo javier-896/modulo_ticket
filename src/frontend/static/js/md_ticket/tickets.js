@@ -1,10 +1,14 @@
 
-//alert('mensaje enviado')
 (()=>{
-   
+  
   let userData =[];
   const userInfo = $('#userInfo');
-  let idUser  =4;
+  let idUser  =15;
+  let table =[];
+  
+  // $(document).ready(function() {
+  //   $('#tickets').DataTable();
+  // } );
 
   const getMensajes= async()=>{
       try {
@@ -17,18 +21,73 @@
                <td class="mailbox-name"><a href= "/responder/${data.id}">${data.name}</a></td>
                <td class="mailbox-subject"><b>${data.messages}</b></td>
                <td class="mailbox-date"><i class="far fa-clock"></i> <i>${data.date}</i></td>
-               <td class="text-center"><a class="btnUpdate btn"> <img src="${data.estado}"> </a></td>
-               <td class="text-center"><a class="btnEliminar btn btn-danger">Borrar</a></td>
+               <td class="text-center"><a class="btnUpdate btn btn-center"> <img src="${data.estado}"> </a></td>
+               <td class="text-center"><a class="btnEliminar btn btn-danger btn-center">Borrar</a></td>
                   
               </tr>`
-              );
-            
+              
+              );            
           });
+          
+          //plugin data tables
+        $.extend( true, $.fn.dataTable.defaults, {
+            "ordering": false
+        } );
+             
+          $(document).ready(function() {
+            table = $('#tickets').DataTable({
+              language:{
+                url:"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+              },
+              pageLength: 10,
+              lengthMenu: [[10,15,20,-1],[10,15,20,'Todos']],
+
+              //responsive: "true",
+              dom: 'Bfrtilp',
+              buttons: [
+                {
+                  extend: 'pdfHtml5',
+                  text: '<i class="fas fa-file-pdf"></i>',
+                  titleAttr: 'Exportar a PDF',
+                  className : 'btn btn-danger',
+                  title: 'Tickets Recibidos',
+                  messageTop: 'Este es un reporte obtenido a la fecha de: '+new Date().toLocaleDateString(),
+                  exportOptions :{
+                    columns: [0,1,2,3]    
+                  },
+                  
+                  
+                },
+                {
+                  extend: 'excelHtml5',
+                  text: '<i class="fas fa-file-excel"></i>',
+                  titleAttr: 'Exportar a Documento Excel',
+                  className : 'btn btn-success',
+                  title: 'Tickets Recibidos',
+                  messageTop: 'Este es un reporte obtenido a la fecha de: '+new Date().toLocaleDateString(),
+                  exportOptions :{
+                    columns: [0,1,2,3]
+                  },
+                  excelStyles: {
+                       template: 'header_blue'
+                  }
+                }
+              ],
+
+              
+            }
+
+            );            
+          });
+
       } catch (error) {
           console.error(error);
       }
+        
   }
-  getMensajes();
+ getMensajes();
+
+ 
   
   //confiuracion para tomar los eventos
  const on = (element, event, selector, handler)=>{
@@ -43,7 +102,7 @@
      const fila = e.target.parentNode.parentNode
      const id = Number(fila.firstElementChild.innerHTML)
      console.log(fila)
-     const respon =confirm('Quiere eliminar este ticket?');
+     const respon =confirm('Quiere eliminar este ticket '+id+'?');
     
      if (respon) {
         await axios.delete('/api/v1/mensaje/delete/'+id);
@@ -54,51 +113,41 @@
  })
 
  //ticket  leido o resuelto update
- //let id = 0
-
-
   
   on(document,'click','.btnUpdate', async(e)=>{
     const fila = e.target.parentNode.parentNode.parentNode
     const id = Number(fila.firstElementChild.innerHTML)
-    console.log(id)
+    //console.log(id)
     const ruta_estado = "../../img/update-ticket.png";
-    //alert(idTicket)
     const data={
       ruta_estado
     } 
     if (!id == ""){
       const res = (await axios.put('/api/v1/mensaje/'+id,data)).data;
       console.log(res);
-      alert('Ticket Contestado');
-      location.reload();
+      //alert('Ticket Contestado');
+      Swal.fire({
+        title: "¡Ticket Marcado!",
+        icon: "success",
+        button: "Aceptar"
+      }).then(function(){
+     
+        location.reload();
+
+      });    
+      
     }else{
-      alert('intente de nuevo');
+      swal({
+        title: "¡Algo salio Mal!",
+        text: 'Intente de nuevo',
+        icon: "warning",
+        button: "Aceptar",
+      })
     }
     
-  
-  
+     
  })
-
- // Filtro de busqueda
-  var busqueda = document.getElementById('buscar');
-  var table = document.getElementById("tickets").tBodies[0];
-
-    buscaTabla = function(){
-      texto = busqueda.value.toLowerCase();
-      var r=0;
-      while(row = table.rows[r++])
-      {
-        if ( row.innerText.toLowerCase().indexOf(texto) !== -1 )
-          row.style.display = null;
-        else
-          row.style.display = 'none';
-      }
-    }
-
-    busqueda.addEventListener('keyup', buscaTabla);
-
-  //paguinacion de la tabla
+  
 
 })();
 

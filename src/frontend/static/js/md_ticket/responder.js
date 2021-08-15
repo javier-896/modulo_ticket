@@ -25,7 +25,7 @@
             IdPerson2 = idPersona; // despues la guardamos en la variable definida afuera de la funcion
             userDatos = mensajes.data;
             userDatos.map(data =>{
-                title.append(`<h3 class="card-title"> <i>Ticket No.</i> <b>${data.id_mensaje}</b>  -  <b>${data.asignatura} </b> </h3>`)
+                title.append(`<h3 class="card-title"> <b>Ticket No.</b> <b>${data.id_mensaje}</b>  -  <b>${data.asignatura} </b> </h3>`)
                 Info.append(`<p>De: <b>${data.name}</b><p>`);
                 Info.append(`<p>${data.message}</p>`);
                 if (image.length < 20) {
@@ -46,7 +46,21 @@
  
    
 //Eliminar Ticket
-$("#deleteT").on('click', async function(e){
+  $("#deleteT").on('click', e =>{
+     // e.preventDefault();
+      alertify.confirm('Eliminar Ticket', '¿Desea eliminar este ticket?', async function(){ 
+       await axios.delete('/api/v1/mensaje/delete/'+ idMensaje);
+        window.location.href="/mensajes";
+       //alertify.success('Si') 
+    }
+     ,function(){ alertify.error('Cancelado')}).set('labels',{ok:'Aceptar', cancel:'Cancelar'});
+
+  });
+
+
+
+
+/* $("#deleteT").on('click', async function(e){
     e.preventDefault();
     let Eliminar = idMensaje;
     const respon =confirm('Quiere eliminar este ticket?');
@@ -57,7 +71,7 @@ $("#deleteT").on('click', async function(e){
         window.location.href="/mensajes";
     }
       
- });
+ }); */
  
 
 
@@ -96,6 +110,9 @@ $("#deleteT").on('click', async function(e){
   });
 
 //guardar los datos del formulario a la BD   
+   
+  
+
     $('#responderMensaje').on('submit', async function(evento){
         evento.preventDefault(); //cancela que la pagina se recargue
         
@@ -121,18 +138,88 @@ $("#deleteT").on('click', async function(e){
             }
             try{
                 const res = (await axios.post('/api/v1/mensaje', data)).data;
-                console.log(res);
-                alert('Mensaje Enviado!');
-                window.location.href="/mensajes";
+                Swal.fire({
+                    title: "¡Ticket enviado exitosamente!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1000
+                  }).then(function(){
+                    $('#modalResponder').modal('toggle');
+                    $('#descripcionMensaje').val('');
+                    imageview.src = "../../img/placeholder.png";
+                    $('#file').val('');
+                    $('#progres-image').val(0);
+                  });
+               
             }catch(error){
                 console.log(error);
             }
         }else{
-         alert('Algo salio mal!');   
+            alertify
+            .alert("Cantidad de caracteres incorrecto","Debe de contener de 4 a 250 caracteres", function(){
+  
+            });
         }
-  });
-    
+   
+       
     
 
+  });
+  
+
+    $('#cancelarModal').on('click', function(){
+        var descr = $('#descripcionMensaje').val();
+        if(descr.length>0){
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Los datos se perderan",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'Cancelar',
+              }).then((result) => {
+                  if (result.isConfirmed){ 
+                    $('#modalResponder').modal('toggle');
+                    $('#descripcionMensaje').val('');
+                    imageview.src = "../../img/placeholder.png";
+                    $('#file').val('');
+                    $('#progres-image').val(0);
+    
+                  }
+              })
+        }else{
+            $('#modalResponder').modal('toggle');
+        }
+    });
+
+    $('#close_modal').on('click', function(){
+         var desc = $('#descripcionMensaje').val();
+        if(desc.length>0){
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Los datos se perderan",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'Cancelar',
+              }).then((result) => {
+                  if (result.isConfirmed){ 
+                    $('#modalResponder').modal('toggle');
+                    $('#descripcionMensaje').val('');
+                    imageview.src = "../../img/placeholder.png";
+                    $('#file').val('');
+                    $('#progres-image').val(0);
+    
+                  }
+              })
+        }else{
+            $('#modalResponder').modal('toggle');
+        }
+       
+    });
 
 })();  

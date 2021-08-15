@@ -30,33 +30,27 @@
                 <!-- Check all button -->
               
                 <!-- /.btn-group -->
-                <a href="/mensajes" class="btn btn-default btn-sm">
+                <a id="actualizar" href="#" class="btn btn-default btn-sm"> Actualizar &nbsp;
                   <i class="fas fa-sync-alt"></i>
                 </a>
-                  <a href="/mensajeNuevo" class="btn btn-default btn-sm">
-                    <i class="fas fa-external-link-alt"></i>
+                  <a href="/mensajeNuevo" class="btn btn-default btn-sm">Agenda &nbsp;
+                    <i class="fas fa-address-book"></i>
                   </a>
               
                 <!-- /.float-right -->
               </div>
               <div class="card-body">
-                <table id="tickets" class="table table-striped" style="width:100%">
+                <table id="tickets" class="table table-striped table-responsive" style="width:100%">
                   <thead>
-                    <tr>
-                      <td colspan="3">
-                           <input id="buscar" type="text" class="form-control" placeholder="Buscar..."/>  
-                      </td>
-
-                    </tr>
                                
        
         <tr >
           <th>Id</th>
           <th>Destinatario</th>
-          <th>Descripción</th>
+          <th width= "45%" max-width="70%">Descripción</th>
           <th>Fecha mensaje</th>
-          <th>Estado</th>
-          <th>Acción</th>                       
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acción</th>                       
         </tr>
                    
      
@@ -64,18 +58,6 @@
                   <tbody id="enviado">
 
                   </tbody>
-                  <tfoot>
-                   <td>
-                      <button type="button" id="cargar_anterior_pagina" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-left"></i></button>
-                   </td>
-                    <td id="indicador_paginas"></td>
-                    <td>
-                      <button type="button" id="cargar_siguiente_pagina" class="btn btn-default btn-sm">
-                       <i class="fas fa-chevron-right"></i>
-                      </button>
-                    </td>
-                  </tfoot>
                 </table>
 
                 
