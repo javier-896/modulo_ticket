@@ -18,11 +18,12 @@
             const idPersona = Number(mensajes.data[0].id_persona); //guardamos en una constante el id de la persona
             const image = String(mensajes.data[0].photo);
             const asigID =Number(mensajes.data[0].id_asignatura);
-            const emisor = Number(mensajes.data[0].emisor); // id de la perosna que esta enviando el ticket
+            const emisor = Number(mensajes.data[0].id_persona2); // id de la perosna que esta enviando el ticket
 
             idemisor = emisor;// id de la perosna que esta enviando el ticket y la guardamos en la variable que declaramos afuera de la funcion 
             idAsignatura = asigID;
             IdPerson2 = idPersona; // despues la guardamos en la variable definida afuera de la funcion
+            console.log(idemisor);
             userDatos = mensajes.data;
             userDatos.map(data =>{
                 title.append(`<h3 class="card-title"> <b>Ticket No.</b> <b>${data.id_mensaje}</b>  -  <b>${data.asignatura} </b> </h3>`)

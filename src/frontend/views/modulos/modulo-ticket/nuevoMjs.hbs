@@ -20,8 +20,11 @@
 
 <!-- DataTales Example -->
 <section class="content">
+
     <div class="col-md-12">
+
         <div class="card card-primary card-outline">
+          <h2 style="margin: 5px" >Contactos de catedráticos según su asignatura</h2>
             <div class="card-header">
               <h3 class="card-title">Agenda</h3>
             </div>
@@ -29,14 +32,9 @@
 
 
 
-<div class="table-responsive mailbox-messages">
-  <table id="agendatable" class="table table-hover table-striped" >                        
+<div class="card-body">
+  <table id="agenda" class="table table-hover table-striped " >                        
     <thead>           
-        <tr>
-          <td colspan="3">
-            <input id="buscar" type="text" class="form-control" placeholder="Buscar..."/>  
-          </td>
-        </tr>
         <tr >
           <th>Id</th>
           <th>Nombre Completo</th>
@@ -64,13 +62,14 @@
     <!-- MODAL PARA ENVIAR MENSAJE-->
 
 
-<div id="Modal1" class="modal fade">
+<div id="Modal1" class="modal fade" data-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">   
           <div>  
             <h4 class="modal-title " style="margin: 10px"> Nuevo ticket  </h4>     
-              <h6 style="margin: 10px" >Nombre : <label id="nombre"></label><h6>
+              <h6 style="margin: 10px" >Para : <label id="nombre"></label><h6>
+              <h6 style="margin: 10px" >De : <b>Juan Santos</b><h6>
           </div>
         </div>
 
@@ -100,8 +99,9 @@
 <!--Pie del modal-->
          <div class="modal-footer">
          <button type="submit" class="btn btn-info"> Enviar <i class="fas fa-paper-plane"></i></button>
-         <button type="reset" class="btn btn-danger" data-dismiss="modal"  > Cancelar <i class="fas fa-ban" >  </i>
-         </button>                        
+         <a class="btn btn-danger" href="#salir" data-toggle="modal" data-target="#salir" 
+          data-target="#salir" id="btncancelar"> Cancelar y salir <i class="fas fa-ban" > </i>
+         </a>                        
          </div>
     </form>
 </div>
@@ -111,3 +111,25 @@
 </div>
 </div>
 
+
+   <!--MODAL PARA CONTROLAR EL EVENTO DEL MODAL PRINCIPAL--> 
+<div class="modal fade" id="salir" tabindex="-1" aria-labelledby="staticBackdropLabel""
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Desea salir de  este sitio?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <h6 style="margin: 10px" >Es posible que los cambios realizado no se guarden.</label><h6>
+                <div class="modal-footer">
+                    <a class="btn btn-info" href="" >Salir </a>
+                    <button class="btn btn-danger" type="submit" data-dismiss="modal">Cancelar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>

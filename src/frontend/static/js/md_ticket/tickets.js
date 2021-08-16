@@ -3,12 +3,10 @@
   
   let userData =[];
   const userInfo = $('#userInfo');
-  let idUser  =15;
+  let idUser  =2;
   let table =[];
   
-  // $(document).ready(function() {
-  //   $('#tickets').DataTable();
-  // } );
+  
 
   const getMensajes= async()=>{
       try {

@@ -4,7 +4,7 @@
    
   let userData =[];
   const userInfo = $('#enviado');
-  let idUser  =5;
+  let idUser =2;
 
   const getMensajes= async()=>{
       try {

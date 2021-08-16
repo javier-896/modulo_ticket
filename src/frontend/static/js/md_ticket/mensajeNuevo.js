@@ -1,15 +1,13 @@
-
 (()=>{
     
     let userData =[];
     const userInfo = $('#Agendacontacto');
-       let id  = 5;
+    let id  = 2;
+    
     const getAgenda= async()=>{
         try {
             const mensajes = await axios.get('/api/v1/mensaje/agenda/'+id)
             
-  
-            console.log(mensajes.data);
             userData = mensajes.data;
             userData.map(data =>{
             userInfo.append(`<tr>
@@ -21,37 +19,32 @@
             <td >${data.seccion}</td>
             
             <td>
-            <a " type="submit"  style="margin: 5px"
+            <a  type="submit"  style="margin: 5px"
             class="btn btn-warning" data-toggle="modal" data-target="#Modal1" id="btnmodal"
-             data-id="${data.id_person2}" 
+            data-id="${data.id_person2}" 
             data-no="${data.nombre}" data-as="${data.id_asig}" data-rol="${data.rol}"  >
-            <i class="fa fa-external-link-square" aria-hidden="true"></i>
-            </a>`);
-           
+            <i class="fa fa-external-link-square" aria-hidden="true" ></i>
+            </a>`);         
             });
+
+            $(document).ready( function () {
+                $('#agenda').DataTable({
+                    language:{
+                        url:"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                      },
+                      pageLength: 10,
+                      lengthMenu: [[10,15,20,-1],[10,15,20,'Todos']]
+                });
+            } );
+           
         } catch (error) {
             console.error(error);
         }
     }
+
     getAgenda();
   
-   // Filtro de busqueda
-  var busqueda = document.getElementById('buscar');
-  var table = document.getElementById('agendatable').tBodies[0];
-
-    buscaTabla = function(){
-      texto = busqueda.value.toLowerCase();
-      var r=0;
-      while(row = table.rows[r++])
-      {
-        if ( row.innerText.toLowerCase().indexOf(texto) !== -1 )
-          row.style.display = null;
-        else
-          row.style.display = 'none';
-      }
-    }
-
-    busqueda.addEventListener('keyup', buscaTabla);
+   
 
 
 
@@ -111,11 +104,9 @@
       });
    
 
+
   // enviar un nuevo ticket desde el modal
-  
-  
-  
-  $('#Modalmensaje').on('submit', async function(evento){
+   $('#Modalmensaje').on('submit', async function(evento){
    
           evento.preventDefault(); //cancela que la pagina se recargue
           
@@ -141,22 +132,44 @@
               try{
                   const res = (await axios.post('/api/v1/mensaje/', data)).data;
                   console.log(res);
-                   alert('Mensaje Enviado Exitosamente!');
-                  // window.location.href="/mensajeNuevo";                 
-              }catch(error){
-                  console.log(error);
-              }
-          }else{
-           alert('Algo salio mal!');   
+             Swal.fire({
+  position: 'top-center',
+  icon: 'success',
+  title: 'Excelente',
+  text: "Su ticket ha sido enviado exitosamente",
+  showConfirmButton: false,
+  timer: 2000,
+
+}).then(function(){ 
+   location.reload();
+   }
+);     
+ }catch(error){
+   console.log(error);
+}}else{
+
+     Swal.fire({
+  position: 'top-center',
+  icon: 'error',
+    title: 'Error', 
+  text: 'El mensaje cuenta con menos de 4 caracteres.',
+  showConfirmButton: false,
+  timer: 3500
+})   
           }
     });
-  
-  // codigo para limpiar el modal 
-  $('#Modal1').on('hidden.bs.modal', function (e) {
+})();
+
+
+// evento salir del modal
+function salir() {
+   
+$('#Modal1').on('hidden', function (e) {
     imageview.src = "../../img/placeholder.png";
     progresbar.value = "0";   
-  document.getElementById("Modalmensaje").reset(); 
-  })
-  
-   
-  })();
+   document.getElementById("Modalmensaje").reset(); 
+
+ });
+ 
+};
+
