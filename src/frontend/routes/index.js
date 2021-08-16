@@ -21,7 +21,7 @@ router.get('/mensajeNuevo', modTiicket.pantalla_nuevoMjs);
 router.get('/responder/:id', modTiicket.pantalla_responderticket);
 router.get('/ticketenviados', modTiicket.pantalla_ticketenviado);
 router.get('/verticket/:id', modTiicket.pantalla_verticket);
-  
+router.get('/reporte', modTiicket.pantalla_reporteResumen);
 
 
 //router.get('*', (req, res) => res.redirect('/') );

@@ -29,7 +29,14 @@ exports.pantalla_ticketenviado= (req, res) => {
 
 exports.pantalla_verticket= (req, res) => {
     res.render('modulos/modulo-ticket/verticket', {
-        nombrePagina: 'Ticket ',
+        nombrePagina: 'Ticket',
         ticketsverenviado: true
+    })
+}
+
+exports.pantalla_reporteResumen= (req, res) => {
+    res.render('modulos/modulo-ticket/reporte_ticekt', {
+        nombrePagina: 'ticket_reporte',
+        ticketsReporte: true
     })
 }

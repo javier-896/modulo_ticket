@@ -153,11 +153,11 @@ exports.agenda = async(req,res)=>{
      }
  }
 
- exports.rol = async(req, res) =>{
+ exports.reporte = async(req, res) =>{
      const {id} = req.params;
      try {
-         const id_rol = await mysqlConnection.query('select tbl_rol.id_rol_usuario from tbl_rol inner join tbl_usuario on tbl_usuario.id_rol_usuario = tbl_rol.id_rol_usuariowhere tbl_usuario.id_usuario =(?)',[id]);
-         return res.json(id_rol);
+         const reporte_resumen = await mysqlConnection.query('SELECT * FROM tbl_bitacora where usr_registro =(?)',[id]);
+         return res.json(reporte_resumen);
         } catch (error) {
          
      }

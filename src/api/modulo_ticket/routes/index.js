@@ -17,5 +17,5 @@ check('descripcion','No se permiten mas de 250 caracteres').isLength({max:250})
 ],ticketC.insertaticket); //
 router.put('/:id', ticketC.mensajeLeido);//actualizar mensaje a leido
 router.delete('/delete/:id', ticketC.eliminar_mensaje);//eliminar mensaje
-
+router.get('/reporte/:id',ticketC.reporte); 
 module.exports = router;    
